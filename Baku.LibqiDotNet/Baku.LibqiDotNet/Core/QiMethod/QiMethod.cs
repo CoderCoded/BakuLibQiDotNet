@@ -32,6 +32,15 @@ namespace Baku.LibqiDotNet
                 .GetValue();
         }
 
+        /// <summary>Async call.</summary>
+        /// <param name="args">Arguments</param>
+        /// <returns>A QiFuture</returns>
+        public QiFuture CallAsync(params QiAnyValue[] args)
+        {
+            return _obj
+                .CallDirect(GetMethodSignature(args), QiTuple.CreateDynamic(args).QiValue);
+        }
+
         /// <summary>関数を同期的に呼び出し、結果となる<see cref="QiObject"/>型変数を取得します。</summary>
         /// <param name="args">関数の引数</param>
         /// <returns>結果</returns>
